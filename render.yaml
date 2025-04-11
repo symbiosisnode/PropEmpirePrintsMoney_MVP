@@ -15,8 +15,21 @@ services:
         value: 10000
       - key: ALLOWED_ORIGINS
         value: https://propempire.com,https://propempire.netlify.app
-    healthCheckPath: /api/health
+    healthCheckPath: /health
+    preDeployCommand: npm run lint && npm run test
     autoDeploy: true
+    buildFilters:
+      include:
+        - server/**
+        - package.json
+        - package-lock.json
+      exclude:
+        - dist/**
+        - netlify/**
+        - tests/**
+        - .github/**
+        - .gitignore
+        - README.md
     plan: free
     scaling:
       minInstances: 1
