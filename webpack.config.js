@@ -7,8 +7,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   mode: 'production',
   entry: {
-    main: './dist/script.js',
-    login: './dist/login.js'
+    main: './src/script.js',
+    login: './src/login.js'
   },
   output: {
     filename: '[name].bundle.js',
@@ -31,12 +31,12 @@ module.exports = {
       filename: 'styles.css'
     }),
     new HtmlWebpackPlugin({
-      template: './dist/index.html',
+      template: './src/index.html',
       filename: 'index.html',
       chunks: ['main']
     }),
     new HtmlWebpackPlugin({
-      template: './dist/login.html',
+      template: './src/login.html',
       filename: 'login.html',
       chunks: ['login']
     })

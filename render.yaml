@@ -1,0 +1,30 @@
+services:
+  - type: web
+    name: propempire-api
+    env: node
+    buildCommand: npm install
+    startCommand: node server/server.js
+    rootDir: server
+    envVars:
+      - key: JWT_SECRET
+        sync: false
+        value: 828dcd6edc98aa7c55834a3c32553d0abfdd9104af2bd7fb0b7196edcc87c12f
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: ALLOWED_ORIGINS
+        value: https://propempire.com,https://propempire.netlify.app
+    healthCheckPath: /api/health
+    autoDeploy: true
+    plan: free
+    scaling:
+      minInstances: 1
+      maxInstances: 1
+    disk:
+      name: data
+      mountPath: /data
+      sizeGB: 1
+    env:
+      - key: NODE_VERSION
+        value: 14 
